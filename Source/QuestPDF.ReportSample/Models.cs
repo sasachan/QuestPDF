@@ -25,7 +25,7 @@ namespace QuestPDF.ReportSample
         public double Longitude { get; set; }
         public double Latitude { get; set; }
     }
-    
+
     public class ReportSection
     {
         public string Title { get; set; }
@@ -41,10 +41,16 @@ namespace QuestPDF.ReportSample
     {
         public string Text { get; set; }
     }
-    
+
     public class ReportSectionMap : ReportSectionElement
     {
         public Location Location { get; set; }
+    }
+
+    public class ReportSectionTable : ReportSectionElement
+    {
+        public IList<string> Products { get; set; }
+        public string TableCategoryName { get; set; }
     }
 
     public class ReportSectionPhotos : ReportSectionElement
@@ -55,7 +61,7 @@ namespace QuestPDF.ReportSample
     public class ReportPhoto
     {
         public Location Location { get; set; }
-        
+
         public DateTime? Date { get; set; }
         public string Comments { get; set; }
     }

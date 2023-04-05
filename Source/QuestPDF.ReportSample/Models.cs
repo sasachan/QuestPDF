@@ -50,7 +50,7 @@ namespace QuestPDF.ReportSample
     public class ReportSectionTable : ReportSectionElement
     {
         public IList<string> Products { get; set; }
-        public string TableCategoryName { get; set; }
+        public string TableHeadingName { get; set; }
     }
 
     public class ReportSectionPhotos : ReportSectionElement

@@ -13,7 +13,7 @@ namespace QuestPDF.ReportSample.Layouts
         {
             Model = model;
         }
-        
+
         public DocumentMetadata GetMetadata()
         {
             return new DocumentMetadata()
@@ -28,15 +28,15 @@ namespace QuestPDF.ReportSample.Layouts
                 .Page(page =>
                 {
                     page.DefaultTextStyle(Typography.Normal);
-                    
+
                     page.MarginVertical(40);
                     page.MarginHorizontal(50);
-                    
+
                     page.Size(PageSizes.A4);
-                        
+
                     page.Header().Element(ComposeHeader);
                     page.Content().Element(ComposeContent);
-                    
+
                     page.Footer().AlignCenter().Text(text =>
                     {
                         text.CurrentPageNumber().Format(x => x?.FormatAsRomanNumeral() ?? "-----");
@@ -53,18 +53,18 @@ namespace QuestPDF.ReportSample.Layouts
                 column.Item().Row(row =>
                 {
                     row.Spacing(50);
-                    
+
                     row.RelativeItem().PaddingTop(-10).Text(Model.Title).Style(Typography.Title);
                     row.ConstantItem(90).Hyperlink("https://www.questpdf.com").MaxHeight(30).Component<ImagePlaceholder>();
                 });
 
                 column.Item().ShowOnce().PaddingVertical(15).Border(1f).BorderColor(Colors.Grey.Lighten1).ExtendHorizontal();
-                
+
                 column.Item().ShowOnce().Grid(grid =>
                 {
                     grid.Columns(2);
                     grid.Spacing(5);
-                        
+
                     foreach (var field in Model.HeaderFields)
                     {
                         grid.Item().Text(text =>
@@ -82,17 +82,17 @@ namespace QuestPDF.ReportSample.Layouts
             container.PaddingVertical(20).Column(column =>
             {
                 column.Spacing(20);
-                
+
                 column.Item().Component(new TableOfContentsTemplate(Model.Sections));
-                
+
                 column.Item().PageBreak();
-                
+
                 foreach (var section in Model.Sections)
                     column.Item().Section(section.Title).Component(new SectionTemplate(section));
-                
+
                 column.Item().PageBreak();
                 column.Item().Section("Photos");
-                
+
                 foreach (var photo in Model.Photos)
                     column.Item().Component(new PhotoTemplate(photo));
             });

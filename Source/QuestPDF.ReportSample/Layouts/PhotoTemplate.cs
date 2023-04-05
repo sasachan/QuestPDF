@@ -13,7 +13,7 @@ namespace QuestPDF.ReportSample.Layouts
         {
             Model = model;
         }
-        
+
         public void Compose(IContainer container)
         {
             container
@@ -25,7 +25,7 @@ namespace QuestPDF.ReportSample.Layouts
                     column.Item().Element(PhotoDetails);
                 });
         }
-        
+
         void PhotoWithMaps(IContainer container)
         {
             container
@@ -36,7 +36,7 @@ namespace QuestPDF.ReportSample.Layouts
                     row.RelativeItem().PaddingLeft(5).Column(column =>
                     {
                         column.Spacing(7f);
-                        
+
                         column.Item().AspectRatio(4 / 3f).Component<ImagePlaceholder>();
                         column.Item().AspectRatio(4 / 3f).Component<ImagePlaceholder>();
                     });
@@ -53,7 +53,7 @@ namespace QuestPDF.ReportSample.Layouts
                 grid.Item(2).ValueCell().Text(Model.Date?.ToString("g") ?? string.Empty);
                 grid.Item().LabelCell().Text("Location");
                 grid.Item(2).ValueCell().Text(Model.Location.Format());
-                
+
                 grid.Item().LabelCell().Text("Comments");
                 grid.Item(5).ValueCell().Text(Model.Comments);
             });

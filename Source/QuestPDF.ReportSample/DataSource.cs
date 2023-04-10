@@ -90,7 +90,7 @@ namespace QuestPDF.ReportSample
                 {
                     Label = Placeholders.Label(),
                     TableHeadingName = "Category1",
-                    Products = new List<string>() { "Prod1", "Prod2" }
+                    Products = new List<string>() { "Prod1", "Prod2", "Prod3" }
 
                 };
             }

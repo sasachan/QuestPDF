@@ -1,5 +1,5 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
+using QuestPDF.Examples;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -12,25 +12,17 @@ namespace QuestPDF.ReportSample.Layouts
 
         public void Compose(IContainer container)
         {
+            var items = Enumerable.Range(0, 5).Select(x => new OrderItem()).ToList();
             container
                         .Padding(5)
                         .MinimalBox()
                         .Border(1)
                         .DefaultTextStyle(TextStyle.Default.Size(5))
-                        .Table(table =>
+                        .Decoration(decoration =>
                         {
-                            table.ColumnsDefinition(columns =>
-                            {
-                                columns.RelativeColumn();
-                                columns.RelativeColumn();
-                                columns.RelativeColumn();
-                                columns.RelativeColumn();
-                            });
-
-                            table.Cell().Row(1).Column(1).Element(Block).Text("A");
-                            table.Cell().Row(2).Column(2).Element(Block).Text("B");
-                            table.Cell().Row(1).Column(3).Element(Block).Text("C");
-                            table.Cell().Row(2).Column(4).Element(Block).Text("D");
+                            decoration
+                            .Content()
+                                .Dynamic(new OrdersTable(items));
                         });
         }
 
